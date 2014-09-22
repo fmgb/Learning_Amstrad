@@ -1,0 +1,21 @@
+#include <strings.h>
+
+main()
+{
+	unsigned char nColor = 0;
+
+	//Set mode 0
+	#asm
+	ld a,0
+		call $BC0E
+		#endasm
+
+		for(nColor = 0; nColor<255;nColor++) {
+			memset(0xC000,nColor, 0x3FFF);
+		}
+	//wait char
+	#asm
+	call $BB06
+		#endasm
+
+}
