@@ -4,7 +4,8 @@
 #include "sonido.h"
 #include "controlador.h"
 #include "../cpcrslib_br2014/include/cpcrslib.h"
-void mostrarMenu() 
+
+void Menu() 
 {
 	cpc_ClrScr();
 	sound('1',478,200,'15',0,0,0);
@@ -15,8 +16,6 @@ void mostrarMenu()
 	printf("4. Puntuaciones");
 }
 
-void pintarMenu();
-
 void menuJugar() {
 	printf("1. Modo Arcade");
 	printf("2. Modo Supervivencia");
@@ -24,9 +23,6 @@ void menuJugar() {
 	printf("4. Volver");
 }
 
-void ConfigurarSonido() {
-	
-}
 
 void menuConfigurar() {
 	printf("1. Sonido");
@@ -75,9 +71,12 @@ void RedefinicionTeclas() {
 	}
 }
 
-void configurarTeclado() {
+void ConfigurarTeclado() {
 	RedefinicionTeclas();
-	Configurar();
+}
+
+void ConfigurarSonido() {
+	
 }
 
 void Configurar() {
@@ -100,4 +99,56 @@ void Configurar() {
 		}
 	}
 }
+
+void Jugar() {
+	unsigned int option = 0;
+	menuJugar();
+	printf("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+	while(!option q){
+		option = elegirOpcion();
+		if(option == 1) {
+			JugarArcade();
+		}else if(option == 2) {
+			JugarSupervivencia();
+		}else if(option == 3) {
+			JugarMultijugador();
+		}else if(option == 4) {
+			MenuPrincipal();
+		}else {
+			option = 0;
+		}
+	}
+}
+
+void MenuPrincipal() {
+	unsigned int option = 0;
+	Menu();
+
+	while(!option) {
+		option = elegirOpcion();
+		if(option == 1) {
+			Jugar();
+		}
+		else if(option == 2) {
+			printf("Entro en configurar");
+			Configurar();
+		}
+		else if(option == 3) {
+//			SobreMi();
+		}
+		else if(option == 4) {
+//			Puntuaciones();
+		}
+		else if(option == 5) {
+			//sale del bucle.
+		}
+		else {
+			option = 0;
+		}
+	}
+	
+	printf("Termino");
+}
+
+
 #endif

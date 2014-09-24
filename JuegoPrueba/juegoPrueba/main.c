@@ -29,32 +29,7 @@ void asignarTeclas() {
 }
 
 void main() {
-	unsigned int option = 0;
 	asignarTeclas();
 	MenuPrincipal();
 
-	while(!option) {
-		option = elegirOpcion();
-		if(option == 1) {
-			menuJugar();
-		}
-		else if(option == 2) {
-			printf("Entro en configurar");
-			Configurar();
-		}
-		else if(option == 3) {
-			SobreMi();
-		}
-		else if(option == 4) {
-			Puntuaciones();
-		}
-		else if(option == 5) {
-			//sale del bucle.
-		}
-		else {
-			option = 0;
-		}
-	}
-	
-	printf("Termino");
 }
