@@ -21,8 +21,8 @@
 CC=sdcc
 OBJECT_DIR=.obj/
 CFLAGS=-o $(OBJECT_DIR) -mz80 --code-loc 0x0138 --data-loc 0 --no-std-crt0 crt0_cpc.rel putchar_cpc.rel
-CPCTELERA=-lcpctelera.lib
-SOURCE_NAME=main pintandoPantalla
+#CPCTELERA=-lcpctelera.lib
+SOURCE_NAME=main
 GAME_NAME=$(SOURCE_NAME)
 
 ##################################################

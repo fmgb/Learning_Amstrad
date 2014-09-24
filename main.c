@@ -4,7 +4,8 @@
 ////////////////////////////////////////////////////////////////////////
 #include <stdio.h>
 
-//Firmware requires it in the central 32K of RAM (0x4000 to 0xC000), move it as you need...
+//Firmware requires it in the central 32K of RAM (0x4000 to 0xC000), 
+move it as you need...
 #define SOUND_BUFF 0x4FF6 //9 bytes
 #define ENT_BUFF 0x4FE6 //16 bytes
 #define ENV_BUFF 0x4FD6 //16 bytes
@@ -18,7 +19,7 @@ nDuration, unsigned char nVolume, char nVolumeEnvelope, char
 nToneEnvelope, unsigned char nNoisePeriod)
 {
   //This function uses 9 bytes of memory for sound buffer. Firmware 
-//requires it in the central 32K of RAM (0x4000 to 0xC000)
+requires it in the central 32K of RAM (0x4000 to 0xC000)
   /*
     The bytes required to define the sound are as follows
     byte 0 - channel status byte
@@ -89,7 +90,7 @@ void ent(unsigned char nEnvelopeNumber, unsigned char nNumberOfSteps,
 char nTonePeriodOfStep, unsigned char nTimePerStep)
 {
   //This function uses 16 bytes of memory for ent buffer. Firmware 
-//requires it in the central 32K of RAM (0x4000 to 0xC000)
+requires it in the central 32K of RAM (0x4000 to 0xC000)
   
   __asm
     LD HL, #ENT_BUFF
@@ -125,7 +126,7 @@ void env(unsigned char nEnvelopeNumber, unsigned char nNumberOfSteps,
 char nSizeOfStep, unsigned char nTimePerStep)
 {
   //This function uses 16 bytes of memory for env buffer. Firmware 
-//requires it in the central 32K of RAM (0x4000 to 0xC000)
+requires it in the central 32K of RAM (0x4000 to 0xC000)
   
   __asm
     LD HL, #ENV_BUFF
