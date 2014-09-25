@@ -1,0 +1,7 @@
+#ifndef DATOS_H
+#define DATOS_H
+
+#define PERSONA_ANCHO 20
+#define PERSONA_ALTO 10
+
+#endif

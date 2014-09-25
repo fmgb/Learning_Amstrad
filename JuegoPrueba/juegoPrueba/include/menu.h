@@ -17,6 +17,7 @@ void Menu()
 }
 
 void menuJugar() {
+	cpc_ClrScr();
 	printf("1. Modo Arcade");
 	printf("2. Modo Supervivencia");
 	printf("3. Modo Multijugador");
@@ -25,6 +26,7 @@ void menuJugar() {
 
 
 void menuConfigurar() {
+	cpc_ClrScr();
 	printf("1. Sonido");
 	printf("2. Teclado");
 	printf("3. Volver");
@@ -103,8 +105,8 @@ void Configurar() {
 void Jugar() {
 	unsigned int option = 0;
 	menuJugar();
-	printf("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-	while(!option q){
+	
+	while(!option){
 		option = elegirOpcion();
 		if(option == 1) {
 			JugarArcade();

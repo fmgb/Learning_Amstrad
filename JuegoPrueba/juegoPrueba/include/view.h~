@@ -1,0 +1,45 @@
+#ifndef VIEW_H
+#define VIEW_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Nick.h"
+
+#define MAX_X 79
+#define MAX_Y 199
+
+void SetColor(unsigned char nColorIndex, unsigned char nPaletteIndex)
+{
+  __asm
+    ld a, 4 (ix)
+    ld b, 5 (ix)
+    ld c, b
+    call #0xBC32 ;SCR SET INK
+    __endasm;
+}
+
+void SetPalette(const unsigned char *pPalette)
+{
+  unsigned char nColor = 0;
+
+  for(nColor = 0; nColor < NUM_COLORS; nColor++)
+    SetColor(nColor, pPalette[nColor]);
+}
+
+void PutSpriteMode0(unsigned char *pSprite, unsigned char nX, unsigned char nY, unsigned char nWidth, unsigned char nHeight)
+{
+    unsigned char nYPos = 0;
+    unsigned char *pAddress = 0;
+    
+    for(nYPos = 0; nYPos < nHeight; nYPos++)
+    {
+        pAddress = (unsigned char *)(0xC000 + ((nY / 8u) * 80u) + ((nY % 8u) * 2048u) + nX);
+
+        memcpy(pAddress, pSprite, nWidth);
+        pSprite += nWidth;
+        nY++;
+    }
+}
+
+#endif
