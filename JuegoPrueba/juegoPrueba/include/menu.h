@@ -8,7 +8,7 @@
 void Menu() 
 {
 	cpc_ClrScr();
-	sound('1',478,200,'15',0,0,0);
+//	sound('1',478,200,'15',0,0,0);
 	printf("\n\nTITULO DEL JUEGO:\n\n");
 	printf("1. Jugar");
 	printf("2. Configurar");

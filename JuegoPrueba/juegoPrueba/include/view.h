@@ -43,88 +43,104 @@ void PutSpriteMode0(unsigned char *pSprite, unsigned char nX, unsigned char nY, 
 }
 
 void Dibujar() {
-
+	
     unsigned int nFPS = 0;
     unsigned int nTimeLast = 0;
     
-    int nX = 40;
-    int nY = 100;
+    int nX = MAX_X;
+    int nY = MAX_Y;
     char nXDir = 1;
     char nYDir = 2;
-    
-    //SCR_SET_MODE 0
-    __asm
-        ld a, #0
-        call #0xBC0E
-    __endasm;
+		//SCR SET BORDER 0
+		__asm
+			ld b, #0 ;black
+						  ld c, b
+						  call #0xBC38
+						  __endasm;
+	asignarTeclas();
+	SetPalette(NickPalette);
+	
+	nTimeLast = GetTime();
+	
+	while(1) {
 
-    //SCR SET BORDER 0
-  __asm
-    ld b, #0 ;black
-    ld c, b
-    call #0xBC38
-  __endasm;
-asignarTeclas();
-    SetPalette(NickPalette);
-
-    nTimeLast = GetTime();
-
-while(1) {
-
-if(cpc_TestKey(1) == 1){
+		//nX-=nXDir;
+		if(cpc_TestKey(0) == 1) {
+			printf("D");
+			nXDir++;
+		}
+		 if(cpc_TestKey(2) == 1){
 //printf("ENTRO");
-	nX += nXDir;
-}
-/*if(cpc_TestKey(1) == 1) 
-	nY+= nYDir;
-if(cpc_TestKey(2) == 1)
-	nX-= nXDir;
-if(cpc_TestKey(3) == 1)
-nY-=nYDir;*/
-if(nX <= 0)
-{
-nX = 0;
-nXDir = 1;
-        }
-
-        if(nY <= 0)
-        {
-            nY = 0;
-            nYDir = 2;
-        }
-        
-        if(nX >= (MAX_X - NICK_ANCHO))
-        {
-            nX = MAX_X - NICK_ANCHO;
-            nXDir = -1;
-        }
-
-        if(nY >= (MAX_Y - NICK_ALTO))
-        {
-            nY = MAX_Y - NICK_ALTO;
-            nYDir = -2;
-        }
-
-        //paint
-        PutSpriteMode0(sp_Nick, nX, nY, NICK_ANCHO, NICK_ALTO);
-        
-        
-        nFPS++;
-if(GetTime() - nTimeLast >= 300)
-        {
-            //TXT SET CURSOR 0,0
-            __asm
-                ld h, #1
-                ld l, #1
-                call #0xBB75
-            __endasm;
-
-            printf("%u  ", nFPS);
-
-            nTimeLast = GetTime();
-            nFPS = 0;
-}
-}
+			printf("AR");
+			nYDir--;
+		}
+		 if(cpc_TestKey(1) == 1) {
+			printf("I");
+			nXDir--;
+		}
+		if(cpc_TestKey(3) == 1) {
+			printf("AB");
+			nYDir++;
+		}
+		/*else {
+			nXDir = 0;
+			nYDir = 0;
+			}*/
+		nX+=nXDir;
+		nY+=nYDir;
+/*
+if(cpc_TestKey(1) == 1) 
+  nY+= nYDir;
+  if(cpc_TestKey(2) == 1)
+  nX-= nXDir;
+  if(cpc_TestKey(3) == 1)
+  nY-=nYDir;*/
+		if(nX <= 0)
+		{
+			nX = 0;
+//			nXDir = 1;
+		}
+		
+		if(nY <= 0)
+		{
+			nY = 0;
+//			nYDir = 2;
+		}
+		
+		if(nX >= (MAX_X - NICK_ANCHO))
+		{
+			nX = MAX_X - NICK_ANCHO;
+//			nXDir = -1;
+		}
+		
+		if(nY >= (MAX_Y - NICK_ALTO))
+		{
+			nY = MAX_Y - NICK_ALTO;
+//			nYDir = -2;
+		}
+		
+		//paint
+		PutSpriteMode0(sp_Nick, nX, nY, NICK_ANCHO, NICK_ALTO);
+		
+		
+		nFPS++;
+		if(GetTime() - nTimeLast >= 300)
+		{
+			//TXT SET CURSOR 0,0
+			__asm
+				ld h, #1
+				ld l, #1
+				call #0xBB75
+			__endasm;
+				
+			printf("%u  ", nFPS);
+				
+			nTimeLast = GetTime();
+			nFPS = 0;
+		}
+		nYDir = 0;
+		nXDir = 0;
+	}
 }
 
 #endif
